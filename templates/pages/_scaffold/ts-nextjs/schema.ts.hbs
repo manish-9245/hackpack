@@ -1,0 +1,7 @@
+import { sqliteTable, integer, real, text } from "drizzle-orm/sqlite-core";
+
+export const {{entityName}} = sqliteTable("{{entityName}}", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+{{#each fields}}  {{{drizzleField}}},
+{{/each}}
+});

@@ -1,0 +1,6 @@
+{
+  "name": "shadcn-vue",
+  "type": "base",
+  "description": "Nuxt + shadcn-vue components + TypeScript + Tailwind",
+  "postInstall": []
+}

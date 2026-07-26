@@ -1,0 +1,11 @@
+{
+  "name": "landing",
+  "type": "page",
+  "description": "Marketing landing page (hero + CTA linking to signup/login)",
+  "compatibleWith": [
+    "ts-nextjs",
+    "ts-vite-react",
+    "ts-sveltekit"
+  ],
+  "hasVariants": false
+}

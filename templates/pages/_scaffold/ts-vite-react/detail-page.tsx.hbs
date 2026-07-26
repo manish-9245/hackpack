@@ -1,0 +1,49 @@
+import { useParams, useNavigate } from 'react-router';
+import { useEffect, useState } from 'react';
+
+interface Item {
+  id: string;
+{{#each fields}}
+  {{name}}: {{#if (eq type 'number')}}number{{else if (eq type 'boolean')}}boolean{{else if (eq type 'date')}}string{{else}}string{{/if}};
+{{/each}}
+}
+
+export default function {{entityNamePascal}}Detail() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [item, setItem] = useState<Item | null>(null);
+
+  useEffect(() => {
+    if (id && id !== 'new') {
+      fetch(`/api/{{entityName}}/${id}`).then(r => r.json()).then(setItem);
+    }
+  }, [id]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget as HTMLFormElement);
+    const data = Object.fromEntries(formData);
+    const method = id === 'new' ? 'POST' : 'PUT';
+    const url = id === 'new' ? '/api/{{entityName}}' : `/api/{{entityName}}/${id}`;
+    await fetch(url, { method, body: JSON.stringify(data) });
+    navigate('/{{entityName}}');
+  };
+
+  return (
+    <div className="max-w-2xl mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-4">{id === 'new' ? 'Create' : 'Edit'} {{entityNamePascal}}</h1>
+      <form onSubmit={handleSubmit} className="space-y-4">
+{{#each fields}}
+        <div>
+          <label className="block font-medium mb-1">{{capitalize name}}</label>
+          <input type="{{#if (eq type 'number')}}number{{else if (eq type 'boolean')}}checkbox{{else if (eq type 'date')}}date{{else}}text{{/if}}" name="{{name}}" defaultValue={item?.{{name}} ?? ''} className="w-full border rounded px-2 py-1" />
+        </div>
+{{/each}}
+        <div className="flex gap-2">
+          <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded">Save</button>
+          <button type="button" onClick={() => navigate('/{{entityName}}')} className="px-4 py-2 bg-gray-400 text-white rounded">Cancel</button>
+        </div>
+      </form>
+    </div>
+  );
+}

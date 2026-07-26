@@ -1,0 +1,53 @@
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router';
+
+interface Item {
+  id: string;
+{{#each fields}}
+  {{name}}: {{#if (eq type 'number')}}number{{else if (eq type 'boolean')}}boolean{{else if (eq type 'date')}}string{{else}}string{{/if}};
+{{/each}}
+}
+
+export default function {{entityNamePascal}}List() {
+  const [items, setItems] = useState<Item[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/{{entityName}}').then(r => r.json()).then(setItems).finally(() => setLoading(false));
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+
+  return (
+    <div className="max-w-4xl mx-auto p-4">
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-3xl font-bold">{{entityNamePascal}}</h1>
+        <Link to="/{{entityName}}/new" className="px-4 py-2 bg-blue-600 text-white rounded">Create</Link>
+      </div>
+      <table className="w-full border border-gray-300">
+        <thead>
+          <tr className="bg-gray-100">
+            <th className="p-2 text-left">ID</th>
+{{#each fields}}
+            <th className="p-2 text-left">{{capitalize name}}</th>
+{{/each}}
+            <th className="p-2 text-left">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {items.map(item => (
+            <tr key={item.id} className="border-t border-gray-300">
+              <td className="p-2">{item.id}</td>
+{{#each fields}}
+              <td className="p-2">{item.{{name}}}</td>
+{{/each}}
+              <td className="p-2">
+                <Link to={`/{{entityName}}/${item.id}`} className="text-blue-600 hover:underline">Edit</Link>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}

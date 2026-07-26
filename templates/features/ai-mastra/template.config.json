@@ -1,0 +1,16 @@
+{
+  "name": "ai-mastra",
+  "type": "feature",
+  "category": "ai",
+  "description": "Mastra AI agent framework, with Cloudflare D1 storage when db-d1-drizzle is also installed",
+  "compatibleWith": ["ts-nextjs", "ts-vite-react", "ts-sveltekit", "ts-hono-api"],
+  "dependencies": {
+    "@mastra/core": "^1.52.1",
+    "@mastra/cloudflare-d1": "^1.1.1",
+    "@ai-sdk/anthropic": "^4.0.21"
+  },
+  "envVars": [
+    { "key": "ANTHROPIC_API_KEY", "value": "REPLACE_ME", "comment": "get one at https://console.anthropic.com" }
+  ],
+  "postInstall": []
+}

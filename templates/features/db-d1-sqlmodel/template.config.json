@@ -1,0 +1,16 @@
+{
+  "name": "db-d1-sqlmodel",
+  "type": "feature",
+  "category": "db",
+  "description": "Cloudflare D1 for Python Workers — SQLModel for schema/validation, raw D1 binding calls for queries (no SQLAlchemy D1 dialect exists yet)",
+  "compatibleWith": ["py-fastapi"],
+  "pyDependencies": ["sqlmodel>=0.0.22"],
+  "wiring": [
+    {
+      "file": "wrangler.jsonc",
+      "anchor": "// hackpack:bindings",
+      "insert": ",\n  \"d1_databases\": [{ \"binding\": \"DB\", \"database_name\": \"hackpack-db\", \"database_id\": \"REPLACE_WITH_ID_FROM_wrangler_d1_create\" }]"
+    }
+  ],
+  "postInstall": []
+}

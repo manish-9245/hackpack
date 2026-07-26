@@ -1,0 +1,16 @@
+{
+  "name": "auth-py-jwt",
+  "type": "feature",
+  "category": "auth",
+  "description": "Email/password auth for FastAPI-on-Workers using JWTs (pure-Python hashing/JWT — no C-extension deps, safe under Pyodide). Requires db-d1-sqlmodel for the users table.",
+  "compatibleWith": ["py-fastapi"],
+  "pyDependencies": ["pyjwt>=2.10.0"],
+  "envVars": [
+    { "key": "JWT_SECRET", "value": "REPLACE_ME", "comment": "generate with: openssl rand -hex 32. Set as a wrangler secret in production, not a plain var." }
+  ],
+  "wiring": [
+    { "file": "src/app/main.py", "anchor": "# hackpack:imports", "insert": "from app.auth.routes import router as auth_router" },
+    { "file": "src/app/main.py", "anchor": "# hackpack:routers", "insert": "app.include_router(auth_router)" }
+  ],
+  "postInstall": []
+}

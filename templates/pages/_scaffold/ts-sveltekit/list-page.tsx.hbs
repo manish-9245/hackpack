@@ -1,0 +1,55 @@
+<script lang="ts">
+  import { onMount } from 'svelte';
+
+  interface Item {
+    id: string;
+{{#each fields}}
+    {{name}}: {{#if (eq type 'number')}}number{{else if (eq type 'boolean')}}boolean{{else if (eq type 'date')}}string{{else}}string{{/if}};
+{{/each}}
+  }
+
+  let items: Item[] = [];
+  let loading = true;
+
+  onMount(async () => {
+    const res = await fetch('/api/{{entityName}}');
+    items = await res.json();
+    loading = false;
+  });
+</script>
+
+<div class="max-w-4xl mx-auto p-4">
+  <div class="flex justify-between items-center mb-4">
+    <h1 class="text-3xl font-bold">{{entityNamePascal}}</h1>
+    <a href="/{{entityName}}/new" class="px-4 py-2 bg-blue-600 text-white rounded">Create</a>
+  </div>
+
+  {#if loading}
+    <div>Loading...</div>
+  {:else}
+    <table class="w-full border border-gray-300">
+      <thead>
+        <tr class="bg-gray-100">
+          <th class="p-2 text-left">ID</th>
+{{#each fields}}
+          <th class="p-2 text-left">{{capitalize name}}</th>
+{{/each}}
+          <th class="p-2 text-left">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {#each items as item (item.id)}
+          <tr class="border-t border-gray-300">
+            <td class="p-2">{item.id}</td>
+{{#each fields}}
+            <td class="p-2">{item.{{name}}}</td>
+{{/each}}
+            <td class="p-2">
+              <a href="/{{entityName}}/{item.id}" class="text-blue-600 hover:underline">Edit</a>
+            </td>
+          </tr>
+        {/each}
+      </tbody>
+    </table>
+  {/if}
+</div>

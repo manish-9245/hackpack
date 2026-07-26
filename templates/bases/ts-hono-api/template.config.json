@@ -1,0 +1,6 @@
+{
+  "name": "ts-hono-api",
+  "type": "base",
+  "description": "Hono.js REST API framework on Cloudflare Workers — API-only, no frontend",
+  "postInstall": []
+}

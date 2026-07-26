@@ -1,0 +1,15 @@
+{
+  "name": "ai-vercel-sdk",
+  "type": "feature",
+  "category": "ai",
+  "description": "Vercel AI SDK — lightest-weight option for streaming chat UI + one model call, no agent orchestration overhead",
+  "compatibleWith": ["ts-nextjs", "ts-vite-react", "ts-sveltekit", "ts-hono-api"],
+  "dependencies": {
+    "ai": "^7.0.37",
+    "@ai-sdk/anthropic": "^4.0.21"
+  },
+  "envVars": [
+    { "key": "ANTHROPIC_API_KEY", "value": "REPLACE_ME", "comment": "get one at https://console.anthropic.com" }
+  ],
+  "postInstall": []
+}

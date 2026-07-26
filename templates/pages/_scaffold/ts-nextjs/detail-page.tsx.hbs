@@ -1,0 +1,33 @@
+interface {{pascal entityName}}Row {
+  id: number;
+{{#each fields}}  {{name}}: {{tsType}};
+{{/each}}
+}
+
+async function getRow(id: string): Promise<{{pascal entityName}}Row | null> {
+  const base = process.env.NEXT_PUBLIC_BETTER_AUTH_URL ?? "";
+  const res = await fetch(`${base}/api/{{entityName}}`, { cache: "no-store" });
+  if (!res.ok) return null;
+  const rows: {{pascal entityName}}Row[] = await res.json();
+  return rows.find((r) => String(r.id) === id) ?? null;
+}
+
+export default async function {{pascal entityName}}DetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const row = await getRow(id);
+  if (!row) return <main className="p-8">Not found.</main>;
+
+  return (
+    <main className="mx-auto max-w-2xl p-8">
+      <h1 className="text-2xl font-bold capitalize">{{entityName}} #{id}</h1>
+      <dl className="mt-4 flex flex-col gap-2">
+{{#each fields}}
+        <div>
+          <dt className="text-sm text-gray-500">{{name}}</dt>
+          <dd>{String(row.{{name}})}</dd>
+        </div>
+{{/each}}
+      </dl>
+    </main>
+  );
+}

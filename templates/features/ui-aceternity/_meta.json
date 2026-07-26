@@ -1,0 +1,26 @@
+{
+  "spotlight": {
+    "source": "https://ui.aceternity.com/registry/spotlight-new.json",
+    "path": "files/components/ui/spotlight.tsx",
+    "vendoredAt": "2026-07-26",
+    "license": "MIT (Aceternity UI)"
+  },
+  "background-beams": {
+    "source": "https://ui.aceternity.com/registry/background-beams.json",
+    "path": "files/components/ui/background-beams.tsx",
+    "vendoredAt": "2026-07-26",
+    "license": "MIT (Aceternity UI)"
+  },
+  "moving-border": {
+    "source": "https://ui.aceternity.com/registry/moving-border.json",
+    "path": "files/components/ui/moving-border.tsx",
+    "vendoredAt": "2026-07-26",
+    "license": "MIT (Aceternity UI)"
+  },
+  "shimmer-button": {
+    "source": "https://ui.aceternity.com/registry/shimmer-button.json",
+    "path": "files/components/ui/shimmer-button.tsx",
+    "vendoredAt": "2026-07-26",
+    "license": "MIT (Aceternity UI)"
+  }
+}

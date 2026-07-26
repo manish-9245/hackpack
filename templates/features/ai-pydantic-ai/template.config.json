@@ -1,0 +1,16 @@
+{
+  "name": "ai-pydantic-ai",
+  "type": "feature",
+  "category": "ai",
+  "description": "Pydantic AI — model inference with structured output validation for Python Workers",
+  "compatibleWith": ["py-fastapi"],
+  "pyDependencies": ["pydantic-ai>=0.8.0"],
+  "envVars": [
+    { "key": "ANTHROPIC_API_KEY", "value": "REPLACE_ME", "comment": "get one at https://console.anthropic.com" }
+  ],
+  "wiring": [
+    { "file": "src/app/main.py", "anchor": "# hackpack:imports", "insert": "from app.pydantic_ai.routes import router as pydantic_ai_router" },
+    { "file": "src/app/main.py", "anchor": "# hackpack:routers", "insert": "app.include_router(pydantic_ai_router)" }
+  ],
+  "postInstall": []
+}

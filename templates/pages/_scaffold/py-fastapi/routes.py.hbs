@@ -1,0 +1,37 @@
+from fastapi import APIRouter, Depends
+
+import asgi
+from app.db.client import execute, query
+from app.{{entityName}}.schema import {{pascal entityName}}Create
+{{#if protected}}
+from app.auth.routes import get_current_user_id
+{{/if}}
+
+router = APIRouter(prefix="/{{entityName}}")
+
+
+@router.get("/")
+async def list_{{entityName}}(
+    env=Depends(asgi.env),
+{{#if protected}}
+    user_id: str = Depends(get_current_user_id),
+{{/if}}
+):
+    return await query(env.DB, "SELECT * FROM {{entityName}}")
+
+
+@router.post("/")
+async def create_{{entityName}}(
+    body: {{pascal entityName}}Create,
+    env=Depends(asgi.env),
+{{#if protected}}
+    user_id: str = Depends(get_current_user_id),
+{{/if}}
+):
+    await execute(
+        env.DB,
+        "INSERT INTO {{entityName}} ({{#each fields}}{{name}}{{#unless @last}}, {{/unless}}{{/each}}) "
+        "VALUES ({{#each fields}}?{{#unless @last}}, {{/unless}}{{/each}})",
+        [{{#each fields}}body.{{name}}{{#unless @last}}, {{/unless}}{{/each}}],
+    )
+    return {"status": "created"}

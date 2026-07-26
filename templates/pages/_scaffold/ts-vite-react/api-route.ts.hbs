@@ -1,0 +1,38 @@
+// API route for {{entityName}} CRUD operations
+{{#if auth 'protected'}}
+import { getAuthUser } from '@/lib/auth';
+{{/if}}
+
+interface {{entityNamePascal}} {
+  id: string;
+{{#each fields}}
+  {{name}}: {{#if (eq type 'number')}}number{{else if (eq type 'boolean')}}boolean{{else if (eq type 'date')}}string{{else}}string{{/if}};
+{{/each}}
+{{#if auth 'protected'}}
+  userId: string;
+{{/if}}
+}
+
+const db: {{entityNamePascal}}[] = []; // Replace with actual DB calls
+
+export async function GET(req: Request) {
+  {{#if auth 'protected'}}
+  const user = await getAuthUser(req);
+  if (!user) return new Response('Unauthorized', { status: 401 });
+  const items = db.filter(item => item.userId === user.id);
+  {{else}}
+  const items = db;
+  {{/if}}
+  return new Response(JSON.stringify(items), { headers: { 'Content-Type': 'application/json' } });
+}
+
+export async function POST(req: Request) {
+  {{#if auth 'protected'}}
+  const user = await getAuthUser(req);
+  if (!user) return new Response('Unauthorized', { status: 401 });
+  {{/if}}
+  const data = await req.json();
+  const item: {{entityNamePascal}} = { id: crypto.randomUUID(), ...data{{#if auth 'protected'}}, userId: user.id{{/if}} };
+  db.push(item);
+  return new Response(JSON.stringify(item), { status: 201, headers: { 'Content-Type': 'application/json' } });
+}

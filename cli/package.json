@@ -1,0 +1,23 @@
+{
+  "name": "hackpack",
+  "version": "0.1.0",
+  "description": "Hackathon project scaffolding CLI — composable bases, features, and pages deployed to Cloudflare Workers",
+  "type": "module",
+  "bin": {
+    "hackpack": "./bin/hackpack.ts"
+  },
+  "scripts": {
+    "selfcheck": "node --no-warnings test/self-check.ts"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.9.1",
+    "citty": "^0.1.6",
+    "compromise": "^14.14.4",
+    "execa": "^9.5.2",
+    "giget": "^3.3.1",
+    "handlebars": "^4.7.8"
+  },
+  "engines": {
+    "node": ">=22.6.0"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "ai-langchain-js",
+  "type": "feature",
+  "category": "ai",
+  "description": "LangChain.js — alternative to ai-mastra for teams that already know LangChain or need its wider integration ecosystem",
+  "compatibleWith": ["ts-nextjs", "ts-vite-react", "ts-sveltekit", "ts-hono-api"],
+  "dependencies": {
+    "@langchain/core": "^1.2.3",
+    "@langchain/anthropic": "^1.5.2"
+  },
+  "envVars": [
+    { "key": "ANTHROPIC_API_KEY", "value": "REPLACE_ME", "comment": "get one at https://console.anthropic.com" }
+  ],
+  "postInstall": []
+}

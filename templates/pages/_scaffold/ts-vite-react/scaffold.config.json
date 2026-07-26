@@ -1,0 +1,13 @@
+{
+  "language": "ts",
+  "templates": {
+    "list-page.tsx.hbs": "src/pages/{{entityName}}/List.tsx",
+    "detail-page.tsx.hbs": "src/pages/{{entityName}}/Detail.tsx",
+    "api-route.ts.hbs": "src/api/{{entityName}}.ts",
+    "schema.ts.hbs": "src/db/schema/{{entityName}}.ts"
+  },
+  "wiring": [
+    { "file": "src/db/schema/index.ts", "anchor": "// hackpack:schema-exports", "insert": "export * from \"./{{entityName}}\";" },
+    { "file": "src/routes.tsx", "anchor": "// hackpack:routes", "insert": "<Route path=\"/{{entityName}}\" element={<{{entityNamePascal}}List />} />\n    <Route path=\"/{{entityName}}/:id\" element={<{{entityNamePascal}}Detail />} />" }
+  ]
+}

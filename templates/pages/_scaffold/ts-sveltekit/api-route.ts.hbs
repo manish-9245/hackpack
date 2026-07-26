@@ -1,0 +1,38 @@
+import { json, type RequestEvent } from '@sveltejs/kit';
+{{#if auth 'protected'}}
+import { getAuthUser } from '$lib/auth';
+{{/if}}
+
+interface {{entityNamePascal}} {
+  id: string;
+{{#each fields}}
+  {{name}}: {{#if (eq type 'number')}}number{{else if (eq type 'boolean')}}boolean{{else if (eq type 'date')}}string{{else}}string{{/if}};
+{{/each}}
+{{#if auth 'protected'}}
+  userId: string;
+{{/if}}
+}
+
+const db: {{entityNamePascal}}[] = []; // Replace with actual DB calls
+
+export async function GET({ request }: RequestEvent) {
+  {{#if auth 'protected'}}
+  const user = await getAuthUser(request);
+  if (!user) return json({ error: 'Unauthorized' }, { status: 401 });
+  const items = db.filter(item => item.userId === user.id);
+  {{else}}
+  const items = db;
+  {{/if}}
+  return json(items);
+}
+
+export async function POST({ request }: RequestEvent) {
+  {{#if auth 'protected'}}
+  const user = await getAuthUser(request);
+  if (!user) return json({ error: 'Unauthorized' }, { status: 401 });
+  {{/if}}
+  const data = await request.json();
+  const item: {{entityNamePascal}} = { id: crypto.randomUUID(), ...data{{#if auth 'protected'}}, userId: user.id{{/if}} };
+  db.push(item);
+  return json(item, { status: 201 });
+}

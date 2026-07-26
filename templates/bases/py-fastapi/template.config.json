@@ -1,0 +1,6 @@
+{
+  "name": "py-fastapi",
+  "type": "base",
+  "description": "FastAPI on Cloudflare Python Workers (pywrangler/uv), open beta — backend/API only, no frontend",
+  "postInstall": ["uv sync"]
+}

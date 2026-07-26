@@ -1,0 +1,41 @@
+{{#if protected}}
+import { redirect } from "next/navigation";
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth";
+{{/if}}
+import Link from "next/link";
+
+interface {{pascal entityName}}Row {
+  id: number;
+{{#each fields}}  {{name}}: {{tsType}};
+{{/each}}
+}
+
+async function getRows(): Promise<{{pascal entityName}}Row[]> {
+  const base = process.env.NEXT_PUBLIC_BETTER_AUTH_URL ?? "";
+  const res = await fetch(`${base}/api/{{entityName}}`, { cache: "no-store" });
+  return res.ok ? res.json() : [];
+}
+
+export default async function {{pascal entityName}}Page() {
+{{#if protected}}
+  const session = await auth.api.getSession({ headers: await headers() });
+  if (!session) redirect("/login");
+{{/if}}
+  const rows = await getRows();
+
+  return (
+    <main className="mx-auto max-w-2xl p-8">
+      <h1 className="text-2xl font-bold capitalize">{{entityName}}</h1>
+      <ul className="mt-4 flex flex-col gap-2">
+        {rows.map((row) => (
+          <li key={row.id}>
+            <Link href={`/{{entityName}}/${row.id}`} className="underline">
+              {{#each fields}}{{#if @first}}{String(row.{{name}})}{{/if}}{{/each}}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </main>
+  );
+}

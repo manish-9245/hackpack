@@ -1,0 +1,80 @@
+import { Hono } from 'hono';
+import type { Context } from 'hono';
+{{#if auth 'protected'}}
+import { getAuthUser } from '../lib/auth';
+{{/if}}
+
+interface {{entityNamePascal}} {
+  id: string;
+{{#each fields}}
+  {{name}}: {{#if (eq type 'number')}}number{{else if (eq type 'boolean')}}boolean{{else if (eq type 'date')}}string{{else}}string{{/if}};
+{{/each}}
+{{#if auth 'protected'}}
+  userId: string;
+{{/if}}
+}
+
+export const {{entityName}}Routes = new Hono();
+
+const db: {{entityNamePascal}}[] = []; // Replace with actual DB calls
+
+{{entityName}}Routes.get('/', async (c: Context) => {
+  {{#if auth 'protected'}}
+  const user = await getAuthUser(c.req.raw);
+  if (!user) return c.json({ error: 'Unauthorized' }, 401);
+  const items = db.filter(item => item.userId === user.id);
+  {{else}}
+  const items = db;
+  {{/if}}
+  return c.json(items);
+});
+
+{{entityName}}Routes.post('/', async (c: Context) => {
+  {{#if auth 'protected'}}
+  const user = await getAuthUser(c.req.raw);
+  if (!user) return c.json({ error: 'Unauthorized' }, 401);
+  {{/if}}
+  const data = await c.req.json();
+  const item: {{entityNamePascal}} = { id: crypto.randomUUID(), ...data{{#if auth 'protected'}}, userId: user.id{{/if}} };
+  db.push(item);
+  return c.json(item, 201);
+});
+
+{{entityName}}Routes.get('/:id', async (c: Context) => {
+  const item = db.find(i => i.id === c.req.param('id'));
+  if (!item) return c.json({ error: 'Not found' }, 404);
+  {{#if auth 'protected'}}
+  const user = await getAuthUser(c.req.raw);
+  if (!user || item.userId !== user.id) return c.json({ error: 'Unauthorized' }, 401);
+  {{/if}}
+  return c.json(item);
+});
+
+{{entityName}}Routes.put('/:id', async (c: Context) => {
+  {{#if auth 'protected'}}
+  const user = await getAuthUser(c.req.raw);
+  if (!user) return c.json({ error: 'Unauthorized' }, 401);
+  {{/if}}
+  const item = db.find(i => i.id === c.req.param('id'));
+  if (!item) return c.json({ error: 'Not found' }, 404);
+  {{#if auth 'protected'}}
+  if (item.userId !== user.id) return c.json({ error: 'Unauthorized' }, 401);
+  {{/if}}
+  const data = await c.req.json();
+  Object.assign(item, data);
+  return c.json(item);
+});
+
+{{entityName}}Routes.delete('/:id', async (c: Context) => {
+  {{#if auth 'protected'}}
+  const user = await getAuthUser(c.req.raw);
+  if (!user) return c.json({ error: 'Unauthorized' }, 401);
+  {{/if}}
+  const idx = db.findIndex(i => i.id === c.req.param('id'));
+  if (idx === -1) return c.json({ error: 'Not found' }, 404);
+  {{#if auth 'protected'}}
+  if (db[idx].userId !== user.id) return c.json({ error: 'Unauthorized' }, 401);
+  {{/if}}
+  db.splice(idx, 1);
+  return c.json({ ok: true });
+});

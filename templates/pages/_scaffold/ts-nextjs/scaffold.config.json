@@ -1,0 +1,13 @@
+{
+  "language": "ts",
+  "templates": {
+    "list-page.tsx.hbs": "app/{{entityName}}/page.tsx",
+    "detail-page.tsx.hbs": "app/{{entityName}}/[id]/page.tsx",
+    "api-route.ts.hbs": "app/api/{{entityName}}/route.ts",
+    "schema.ts.hbs": "db/schema/{{entityName}}.ts"
+  },
+  "wiring": [
+    { "file": "db/schema/index.ts", "anchor": "// hackpack:schema-exports", "insert": "export * from \"./{{entityName}}\";" },
+    { "file": "components/dashboard-nav.tsx", "anchor": "{/* hackpack:nav-links */}", "insert": "<Link href=\"/{{entityName}}\">{{entityNamePascal}}</Link>" }
+  ]
+}

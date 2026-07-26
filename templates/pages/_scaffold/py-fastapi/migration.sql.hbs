@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS {{entityName}} (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+{{#each fields}}  {{name}} {{sqlType}}{{#unless @last}},{{/unless}}
+{{/each}}
+);

@@ -1,0 +1,15 @@
+{
+  "name": "{{projectName}}",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "uv run pywrangler dev",
+    "start": "uv run pywrangler dev",
+    "cf:build": "uv sync",
+    "cf:deploy": "uv run pywrangler deploy",
+    "cf:dry-run": "uv run pywrangler deploy --dry-run"
+  },
+  "devDependencies": {
+    "wrangler": "^4.114.0"
+  }
+}

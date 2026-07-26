@@ -1,0 +1,6 @@
+{
+  "name": "ts-sveltekit",
+  "type": "base",
+  "description": "SvelteKit + TypeScript + Tailwind, deployed to Cloudflare Workers",
+  "postInstall": []
+}

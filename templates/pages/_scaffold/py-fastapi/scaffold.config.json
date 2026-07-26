@@ -1,0 +1,13 @@
+{
+  "language": "python",
+  "templates": {
+    "__init__.py.hbs": "src/app/{{entityName}}/__init__.py",
+    "schema.py.hbs": "src/app/{{entityName}}/schema.py",
+    "routes.py.hbs": "src/app/{{entityName}}/routes.py",
+    "migration.sql.hbs": "migrations/{{entityName}}.sql"
+  },
+  "wiring": [
+    { "file": "src/app/main.py", "anchor": "# hackpack:imports", "insert": "from app.{{entityName}}.routes import router as {{entityName}}_router" },
+    { "file": "src/app/main.py", "anchor": "# hackpack:routers", "insert": "app.include_router({{entityName}}_router)" }
+  ]
+}

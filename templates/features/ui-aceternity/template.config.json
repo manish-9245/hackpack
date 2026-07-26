@@ -1,0 +1,11 @@
+{
+  "name": "ui-aceternity",
+  "type": "feature",
+  "category": "ui-effects",
+  "description": "Vendored Aceternity UI components (Tailwind + Motion) — pinned source, works offline",
+  "compatibleWith": ["ts-nextjs", "ts-vite-react", "ts-sveltekit"],
+  "dependencies": {
+    "motion": "^11.15.0"
+  },
+  "postInstall": []
+}

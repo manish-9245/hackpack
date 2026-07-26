@@ -1,0 +1,12 @@
+{
+  "name": "dashboard",
+  "type": "page",
+  "description": "Authenticated dashboard shell with sidebar nav \u2014 route-guarded when an auth feature is installed",
+  "compatibleWith": [
+    "ts-nextjs",
+    "ts-vite-react",
+    "ts-sveltekit"
+  ],
+  "requiresCategory": "auth",
+  "hasVariants": true
+}

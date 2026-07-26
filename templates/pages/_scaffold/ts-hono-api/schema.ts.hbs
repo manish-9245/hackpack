@@ -1,0 +1,8 @@
+{{#if fields}}
+export interface {{entityNamePascal}} {
+  id: string;
+{{#each fields}}
+  {{name}}: {{#if (eq type 'number')}}number{{else if (eq type 'boolean')}}boolean{{else if (eq type 'date')}}string{{else}}string{{/if}};
+{{/each}}
+}
+{{/if}}

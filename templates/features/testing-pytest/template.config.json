@@ -1,0 +1,12 @@
+{
+  "name": "testing-pytest",
+  "type": "feature",
+  "category": "testing",
+  "description": "Pytest for py-fastapi. Routes that depend on the Workers env binding (D1, secrets) need the real Pyodide runtime (`uv run pywrangler dev`) to exercise end-to-end — pytest here covers pure Python logic that doesn't touch `asgi`/`js`.",
+  "compatibleWith": ["py-fastapi"],
+  "pyDependencies": ["pytest>=8.3.0"],
+  "scripts": {
+    "test": "uv run pytest"
+  },
+  "postInstall": []
+}

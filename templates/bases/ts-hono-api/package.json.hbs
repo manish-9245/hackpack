@@ -1,0 +1,23 @@
+{
+  "name": "{{projectName}}",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "build": "tsc",
+    "cf:build": "npm run build && wrangler deploy --dry-run",
+    "cf:preview": "npm run dev",
+    "cf:deploy": "npm run build && wrangler deploy",
+    "cf:dry-run": "npm run build && wrangler deploy --dry-run"
+  },
+  "dependencies": {
+    "hono": "^4.6.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250408.0",
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.2",
+    "wrangler": "^3.99.0"
+  }
+}

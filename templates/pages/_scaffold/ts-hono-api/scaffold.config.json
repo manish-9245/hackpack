@@ -1,0 +1,11 @@
+{
+  "language": "ts",
+  "templates": {
+    "api-route.ts.hbs": "src/routes/{{entityName}}.ts",
+    "schema.ts.hbs": "src/db/schema/{{entityName}}.ts"
+  },
+  "wiring": [
+    { "file": "src/db/schema/index.ts", "anchor": "// hackpack:schema-exports", "insert": "export * from \"./{{entityName}}\";" },
+    { "file": "src/index.ts", "anchor": "// hackpack:routes", "insert": "app.route('/api/{{entityName}}', {{entityName}}Routes);" }
+  ]
+}

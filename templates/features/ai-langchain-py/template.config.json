@@ -1,0 +1,16 @@
+{
+  "name": "ai-langchain-py",
+  "type": "feature",
+  "category": "ai",
+  "description": "LangChain for Python Workers — chaining LLMs with multi-step reasoning on Cloudflare Workers via Pyodide",
+  "compatibleWith": ["py-fastapi"],
+  "pyDependencies": ["langchain-anthropic>=0.2.0", "langchain-core>=0.3.0"],
+  "envVars": [
+    { "key": "ANTHROPIC_API_KEY", "value": "REPLACE_ME", "comment": "get one at https://console.anthropic.com" }
+  ],
+  "wiring": [
+    { "file": "src/app/main.py", "anchor": "# hackpack:imports", "insert": "from app.langchain.routes import router as langchain_router" },
+    { "file": "src/app/main.py", "anchor": "# hackpack:routers", "insert": "app.include_router(langchain_router)" }
+  ],
+  "postInstall": []
+}

@@ -1,0 +1,16 @@
+{
+  "name": "auth-better-auth",
+  "type": "feature",
+  "category": "auth",
+  "description": "Better Auth — email/password authentication wired into Next.js route handlers",
+  "compatibleWith": ["ts-nextjs", "ts-vite-react", "ts-sveltekit"],
+  "dependencies": {
+    "better-auth": "^1.1.7"
+  },
+  "envVars": [
+    { "key": "BETTER_AUTH_SECRET", "value": "REPLACE_ME", "comment": "generate with: openssl rand -hex 32" },
+    { "key": "BETTER_AUTH_URL", "value": "http://localhost:3000" },
+    { "key": "NEXT_PUBLIC_BETTER_AUTH_URL", "value": "http://localhost:3000" }
+  ],
+  "postInstall": []
+}

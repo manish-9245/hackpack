@@ -1,0 +1,12 @@
+{
+  "language": "ts",
+  "templates": {
+    "list-page.tsx.hbs": "src/routes/{{entityName}}/+page.svelte",
+    "detail-page.tsx.hbs": "src/routes/{{entityName}}/[id]/+page.svelte",
+    "api-route.ts.hbs": "src/routes/api/{{entityName}}/+server.ts",
+    "schema.ts.hbs": "src/lib/db/schema/{{entityName}}.ts"
+  },
+  "wiring": [
+    { "file": "src/lib/db/schema/index.ts", "anchor": "// hackpack:schema-exports", "insert": "export * from \"./{{entityName}}\";" }
+  ]
+}

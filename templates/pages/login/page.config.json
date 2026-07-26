@@ -1,0 +1,12 @@
+{
+  "name": "login",
+  "type": "page",
+  "description": "Login page \u2014 wires to whichever auth feature is installed, or ships as a stub",
+  "compatibleWith": [
+    "ts-nextjs",
+    "ts-vite-react",
+    "ts-sveltekit"
+  ],
+  "requiresCategory": "auth",
+  "hasVariants": true
+}

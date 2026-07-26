@@ -1,0 +1,6 @@
+{
+  "name": "ts-vite-react",
+  "type": "base",
+  "description": "Vite + React + TypeScript + Tailwind, deployed to Cloudflare Workers",
+  "postInstall": []
+}

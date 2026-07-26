@@ -1,0 +1,15 @@
+{
+  "name": "ui-shadcn-svelte",
+  "type": "feature",
+  "category": "ui",
+  "description": "shadcn-svelte components (Radix UI + Tailwind for Svelte)",
+  "compatibleWith": ["shadcn-svelte"],
+  "dependencies": {
+    "bits-ui": "^0.25.0",
+    "cmdk-sv": "^0.0.17",
+    "lucide-svelte": "^0.469.0",
+    "mode-watcher": "^0.4.1",
+    "svelte-radix": "^0.0.5"
+  },
+  "postInstall": []
+}

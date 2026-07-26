@@ -1,0 +1,8 @@
+{
+  "name": "ci-github-actions",
+  "type": "feature",
+  "category": "ci",
+  "description": "GitHub Actions: build/typecheck/test + wrangler dry-run on PRs, deploy to Cloudflare Workers on merge to main",
+  "compatibleWith": ["ts-nextjs", "ts-vite-react", "ts-sveltekit", "ts-hono-api"],
+  "postInstall": []
+}

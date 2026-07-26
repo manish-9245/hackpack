@@ -1,0 +1,6 @@
+{
+  "name": "ts-nextjs",
+  "type": "base",
+  "description": "Next.js App Router + TypeScript + Tailwind, deployed to Cloudflare Workers via OpenNext",
+  "postInstall": []
+}
