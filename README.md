@@ -328,8 +328,24 @@ MIT
 - **[Features Reference](docs/features.md)**
 - **[Registry Development](docs/registry.md)**
 - **[Architecture Deep Dive](docs/architecture.md)**
-- **[GitHub](https://github.com/yourusername/hackpack)**
-- **[Landing Page & Docs](https://hackpack.dev)**
+- **[GitHub](https://github.com/manish-9245/hackpack)**
+- **[Landing Page](./landing/)** — Deploy to Vercel, showcase your project
+
+---
+
+## 🌐 Landing Page (Vercel)
+
+A beautiful **Next.js showcase site** for hackpack is included in the `landing/` directory.
+
+**Deploy to Vercel in 30 seconds:**
+1. Go to https://vercel.com/new
+2. Import repo: `manish-9245/hackpack`
+3. Set root directory to `./landing`
+4. Click "Deploy"
+
+Your landing page will be live at `hackpack.vercel.app` (or your custom domain).
+
+See [landing/README.md](./landing/README.md) for customization options.
 
 ---
 
