@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Github, Zap, Code2, Layers, Rocket, BookOpen, Terminal } from 'lucide-react';
+import { Github, Zap, Code2, Layers, Rocket, BookOpen, Terminal, ArrowRight, Clock, Sparkles, Shield } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -9,95 +9,109 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
           <div className="text-2xl font-bold gradient-text">hackpack</div>
           <div className="flex gap-6 items-center">
-            <Link href="#features" className="hover:text-blue-400">Features</Link>
-            <Link href="#examples" className="hover:text-blue-400">Examples</Link>
-            <Link href="https://github.com/manish-9245/hackpack" target="_blank" className="hover:text-blue-400 flex items-center gap-2">
-              <Github size={20} /> GitHub
-            </Link>
+            <Link href="#why" className="hover:text-blue-400 text-sm">Why</Link>
+            <Link href="#examples" className="hover:text-blue-400 text-sm">Examples</Link>
+            <a href="https://github.com/manish-9245/hackpack" target="_blank" className="hover:text-blue-400 flex items-center gap-2 text-sm">
+              <Github size={18} /> GitHub
+            </a>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <header className="pt-32 pb-20 px-4">
+      <header className="pt-32 pb-16 px-4 relative">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-6xl font-bold mb-6 gradient-text">
-            Scaffold hackathon projects in seconds
+          <div className="inline-block mb-6 px-4 py-2 bg-blue-600/20 border border-blue-400/50 rounded-full">
+            <p className="text-sm text-blue-300 font-semibold">For hackers who ship, not debate</p>
+          </div>
+
+          <h1 className="text-7xl font-black mb-6 leading-tight">
+            Full-stack in <span className="gradient-text">90 seconds</span>
           </h1>
-          <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-            Pick a framework. Select features. Generate wired pages. Ship to Cloudflare Workers.
-            No boilerplate. No configuration headaches.
+
+          <p className="text-xl text-slate-300 mb-4 max-w-3xl mx-auto leading-relaxed">
+            Pick a framework. Select features. Deploy. No boilerplate. No LLM guessing. No configuration paralysis.
           </p>
-          <div className="flex gap-4 justify-center flex-wrap">
-            <a href="https://github.com/manish-9245/hackpack#quick-start" className="px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold flex items-center gap-2">
-              <Rocket size={20} /> Get Started
+          <p className="text-base text-slate-400 mb-8 max-w-2xl mx-auto">
+            Whether you're at a hackathon, launching an MVP, or learning full-stack—hackpack gets you wired pages, auth, and databases instantly.
+          </p>
+
+          <div className="flex gap-4 justify-center flex-wrap mb-8">
+            <a href="https://github.com/manish-9245/hackpack#quick-start" className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-lg font-bold flex items-center gap-2 transition-all hover:scale-105">
+              <Terminal size={20} /> Try Now (npx)
+              <ArrowRight size={18} />
             </a>
-            <a href="https://github.com/manish-9245/hackpack" className="px-8 py-3 border border-blue-400 hover:bg-blue-400/10 rounded-lg font-semibold flex items-center gap-2">
-              <Github size={20} /> View on GitHub
+            <a href="https://github.com/manish-9245/hackpack" className="px-8 py-4 border-2 border-blue-400 hover:bg-blue-400/10 rounded-lg font-semibold flex items-center gap-2 transition-all">
+              <Github size={20} /> Star on GitHub
             </a>
           </div>
-          <div className="mt-12 text-sm text-slate-400">
-            <p>✨ 7 bases • 16 features • prebuilt pages • Cloudflare Workers</p>
+
+          <div className="text-sm text-slate-400">
+            <p>⚡ TypeScript + Python • 7 frameworks • 16 features • Deploy to Workers</p>
           </div>
         </div>
       </header>
 
-      {/* Stats */}
-      <section className="py-12 px-4 bg-blue-600/5 border-y border-blue-400/20">
-        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <div>
-            <div className="text-4xl font-bold text-blue-400">7</div>
-            <p className="text-slate-400">Frameworks</p>
-          </div>
-          <div>
-            <div className="text-4xl font-bold text-purple-400">16</div>
-            <p className="text-slate-400">Features</p>
-          </div>
-          <div>
-            <div className="text-4xl font-bold text-pink-400">4</div>
-            <p className="text-slate-400">Pages</p>
-          </div>
-          <div>
-            <div className="text-4xl font-bold text-orange-400">∞</div>
-            <p className="text-slate-400">Custom Pages</p>
-          </div>
+      {/* Value Stats */}
+      <section className="py-16 px-4 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-pink-600/10 border-y border-blue-400/20">
+        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
+          <StatCard icon={<Clock size={28} />} stat="90 sec" label="From zero to deployed" color="blue" />
+          <StatCard icon={<Code2 size={28} />} stat="7" label="Frameworks" color="purple" />
+          <StatCard icon={<Layers size={28} />} stat="16" label="Composable features" color="pink" />
+          <StatCard icon={<Sparkles size={28} />} stat="∞" label="Custom pages" color="orange" />
         </div>
       </section>
 
-      {/* Features */}
-      <section id="features" className="py-20 px-4">
+      {/* Why hackpack */}
+      <section id="why" className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-16 text-center">Why hackpack?</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <FeatureCard
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-black mb-4">Built for shipping</h2>
+            <p className="text-xl text-slate-400 max-w-2xl mx-auto">Not for setup paralysis. Not for tech debates. Ship.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            <BenefitCard
+              number="1"
+              title="No setup tax"
+              description="Auth wired. DB schema created. API routes stubbed. You write business logic, not boilerplate."
               icon={<Zap size={32} />}
-              title="⚡ No Boilerplate"
-              description="Pick framework + features, get wired pages instantly. No copy-paste, no setup time."
+              color="blue"
             />
-            <FeatureCard
-              icon={<Code2 size={32} />}
-              title="🔒 Type-Safe"
-              description="Zod schemas, Drizzle ORM, better-auth types. TypeScript everywhere. Catch bugs early."
+            <BenefitCard
+              number="2"
+              title="Type-safe by default"
+              description="Zod schemas, Drizzle ORM, TypeScript everywhere. Bugs caught at compile time, not in prod."
+              icon={<Shield size={32} />}
+              color="green"
             />
-            <FeatureCard
+            <BenefitCard
+              number="3"
+              title="Pick once, ship fast"
+              description="Choose framework + features. Bases and features don't conflict. Mix Next.js + FastAPI + auth in one command."
               icon={<Layers size={32} />}
-              title="🧩 Composable"
-              description="Bases and features are orthogonal. Mix and match. Swap UI kits freely without side effects."
+              color="purple"
             />
-            <FeatureCard
-              icon={<Rocket size={32} />}
-              title="🎯 Deterministic"
-              description="No LLM randomness. Same input → same output. Perfect for hackathons where consistency matters."
-            />
-            <FeatureCard
+            <BenefitCard
+              number="4"
+              title="Reproducible builds"
+              description="No LLM guessing. Same input = same output. Perfect for teams where consistency matters."
               icon={<Code2 size={32} />}
-              title="🐍 Multi-Language"
-              description="TypeScript AND Python. Same CLI, same page generation, same deployment to Workers."
+              color="pink"
             />
-            <FeatureCard
+            <BenefitCard
+              number="5"
+              title="Deploy in one command"
+              description="All projects deploy to Cloudflare Workers. Free tier: 100k req/day, global CDN, no cold starts."
+              icon={<Rocket size={32} />}
+              color="orange"
+            />
+            <BenefitCard
+              number="6"
+              title="Not vendor-locked"
+              description="Export to git. Run locally or in Docker. Customize freely. Your code, your repo, your rules."
               icon={<BookOpen size={32} />}
-              title="📦 Portable"
-              description="Export to any git repo. Customize freely. Build your own registry. No vendor lock-in."
+              color="indigo"
             />
           </div>
         </div>
@@ -261,21 +275,50 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 px-4 text-center">
+      {/* Social Proof */}
+      <section className="py-16 px-4 bg-blue-600/5 border-y border-blue-400/20">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-sm text-slate-400 mb-8">Trusted by hackers and builders</p>
+          <div className="flex flex-wrap justify-center gap-8 items-center text-slate-300">
+            <div className="flex items-center gap-2">
+              <Sparkles size={18} className="text-yellow-400" />
+              <span className="font-semibold">7 Frameworks</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Code2 size={18} className="text-blue-400" />
+              <span className="font-semibold">TypeScript + Python</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Rocket size={18} className="text-green-400" />
+              <span className="font-semibold">Deploy to Workers</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Shield size={18} className="text-purple-400" />
+              <span className="font-semibold">Type-Safe by Default</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-24 px-4 text-center">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-4xl font-bold mb-6">Ready to ship? 🚀</h2>
-          <p className="text-xl text-slate-300 mb-8">
-            Create a full-stack project in under 5 minutes.
+          <h2 className="text-5xl font-black mb-6">Ready to build?</h2>
+          <p className="text-xl text-slate-300 mb-12">
+            Full-stack project from zero to deployed in 90 seconds.
           </p>
-          <div className="flex gap-4 justify-center flex-wrap">
-            <a href="https://github.com/manish-9245/hackpack" className="px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold flex items-center gap-2">
-              <Github size={20} /> View on GitHub
+          <div className="flex gap-4 justify-center flex-wrap mb-12">
+            <a href="https://github.com/manish-9245/hackpack#quick-start" className="px-8 py-4 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 rounded-lg font-bold flex items-center gap-2 transition-all hover:scale-105">
+              <Terminal size={20} /> Start Building
+              <ArrowRight size={18} />
             </a>
-            <a href="https://github.com/manish-9245/hackpack/blob/main/README.md" className="px-8 py-3 border border-blue-400 hover:bg-blue-400/10 rounded-lg font-semibold flex items-center gap-2">
-              <BookOpen size={20} /> Read Docs
+            <a href="https://github.com/manish-9245/hackpack" className="px-8 py-4 border-2 border-blue-400 hover:bg-blue-400/10 rounded-lg font-semibold flex items-center gap-2">
+              <Github size={20} /> View Source
             </a>
           </div>
+          <p className="text-sm text-slate-400">
+            Open source • MIT license • <a href="https://github.com/manish-9245/hackpack" className="text-blue-400 hover:underline">Star us on GitHub</a>
+          </p>
         </div>
       </section>
 
@@ -294,12 +337,55 @@ export default function Home() {
   );
 }
 
-function FeatureCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
+function StatCard({ icon, stat, label, color }: { icon: React.ReactNode; stat: string; label: string; color: string }) {
+  const colorMap = {
+    blue: 'text-blue-400',
+    purple: 'text-purple-400',
+    pink: 'text-pink-400',
+    orange: 'text-orange-400',
+    green: 'text-green-400',
+    indigo: 'text-indigo-400',
+  };
+
   return (
-    <div className="glass p-6 rounded-lg hover:border-blue-400/50 transition-all">
-      <div className="text-blue-400 mb-4">{icon}</div>
-      <h3 className="text-lg font-semibold mb-2">{title}</h3>
-      <p className="text-slate-400">{description}</p>
+    <div className="glass p-6 rounded-lg hover:border-blue-400/50 transition-all text-center">
+      <div className={`${colorMap[color as keyof typeof colorMap]} mb-3 flex justify-center`}>
+        {icon}
+      </div>
+      <div className={`text-3xl font-black ${colorMap[color as keyof typeof colorMap]} mb-2`}>
+        {stat}
+      </div>
+      <p className="text-slate-400 text-sm">{label}</p>
+    </div>
+  );
+}
+
+function BenefitCard({ number, title, description, icon, color }: { number: string; title: string; description: string; icon: React.ReactNode; color: string }) {
+  const colorMap = {
+    blue: 'border-blue-400/50 text-blue-400',
+    green: 'border-green-400/50 text-green-400',
+    purple: 'border-purple-400/50 text-purple-400',
+    pink: 'border-pink-400/50 text-pink-400',
+    orange: 'border-orange-400/50 text-orange-400',
+    indigo: 'border-indigo-400/50 text-indigo-400',
+  };
+
+  return (
+    <div className={`glass p-6 rounded-lg border border-slate-400/20 hover:${colorMap[color as keyof typeof colorMap].split(' ')[0]} transition-all group`}>
+      <div className="flex items-start gap-4">
+        <div className={`${colorMap[color as keyof typeof colorMap].split(' ')[1]} flex-shrink-0 rounded-lg p-2 bg-slate-900/50`}>
+          {icon}
+        </div>
+        <div>
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-xs font-bold px-2 py-1 bg-slate-800 rounded-full text-slate-300">
+              {number}
+            </span>
+          </div>
+          <h3 className="text-lg font-bold mb-2 group-hover:text-white transition-colors">{title}</h3>
+          <p className="text-slate-400 text-sm leading-relaxed">{description}</p>
+        </div>
+      </div>
     </div>
   );
 }
