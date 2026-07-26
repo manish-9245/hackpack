@@ -1,7 +1,27 @@
 {
   "name": "hackpack",
   "version": "0.1.0",
-  "description": "Hackathon project scaffolding CLI — composable bases, features, and pages deployed to Cloudflare Workers",
+  "description": "Scaffold full-stack hackathon projects in seconds. Pick a framework, add features (UI, auth, DB, AI), generate CRUD pages, deploy to Cloudflare Workers.",
+  "keywords": [
+    "hackathon",
+    "scaffold",
+    "full-stack",
+    "nextjs",
+    "fastapi",
+    "sveltekit",
+    "hono",
+    "cloudflare-workers",
+    "d1",
+    "authentication",
+    "crud-generator",
+    "composable",
+    "deterministic",
+    "typescript",
+    "python",
+    "project-generator",
+    "boilerplate",
+    "starter-template"
+  ],
   "type": "module",
   "bin": {
     "hackpack": "./bin/hackpack.ts"
