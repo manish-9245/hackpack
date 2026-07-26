@@ -1,6 +1,17 @@
 import Link from 'next/link';
 import { Github, Zap, Code2, Layers, Rocket, BookOpen, Terminal, ArrowRight, Clock, Sparkles, Shield } from 'lucide-react';
 
+type ColorVariant = 'blue' | 'purple' | 'pink' | 'orange' | 'green' | 'indigo';
+
+const colorConfig: Record<ColorVariant, { stat: string; benefit: string }> = {
+  blue: { stat: 'text-blue-400', benefit: 'border-blue-400/50 text-blue-400' },
+  purple: { stat: 'text-purple-400', benefit: 'border-purple-400/50 text-purple-400' },
+  pink: { stat: 'text-pink-400', benefit: 'border-pink-400/50 text-pink-400' },
+  orange: { stat: 'text-orange-400', benefit: 'border-orange-400/50 text-orange-400' },
+  green: { stat: 'text-green-400', benefit: 'border-green-400/50 text-green-400' },
+  indigo: { stat: 'text-indigo-400', benefit: 'border-indigo-400/50 text-indigo-400' },
+};
+
 export default function Home() {
   return (
     <div className="min-h-screen">
@@ -47,7 +58,7 @@ export default function Home() {
           </div>
 
           <div className="text-sm text-slate-400">
-            <p>⚡ TypeScript + Python • 7 frameworks • 16 features • Deploy to Workers</p>
+            <p>⚡ Deploy live in seconds • No boilerplate • No LLM randomness</p>
           </div>
         </div>
       </header>
@@ -117,184 +128,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Quick Start */}
-      <section className="py-20 px-4 bg-blue-600/5 border-y border-blue-400/20">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-center">Quick Start</h2>
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                <span className="bg-blue-600 w-8 h-8 rounded-full flex items-center justify-center">1</span>
-                Create Project
-              </h3>
-              <div className="bg-slate-900 p-4 rounded-lg overflow-x-auto">
-                <code className="text-sm text-slate-300">
-                  $ npx hackpack@latest new my-hack --base=ts-nextjs \
-                  <br />
-                  &nbsp;&nbsp;--features=ui-shadcn,auth-better-auth,db-d1-drizzle \
-                  <br />
-                  &nbsp;&nbsp;--pages=landing,login,signup,dashboard
-                </code>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                <span className="bg-blue-600 w-8 h-8 rounded-full flex items-center justify-center">2</span>
-                Install & Run
-              </h3>
-              <div className="bg-slate-900 p-4 rounded-lg overflow-x-auto">
-                <code className="text-sm text-slate-300">
-                  $ cd my-hack && npm install && npm run dev
-                  <br />
-                  <span className="text-green-400">→ Live at http://localhost:3000</span>
-                </code>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                <span className="bg-blue-600 w-8 h-8 rounded-full flex items-center justify-center">3</span>
-                Generate Custom Page
-              </h3>
-              <div className="bg-slate-900 p-4 rounded-lg overflow-x-auto">
-                <code className="text-sm text-slate-300">
-                  $ hackpack page add products \<br />
-                  &nbsp;&nbsp;--fields=name:string,price:number,stock:number \<br />
-                  &nbsp;&nbsp;--auth=protected
-                </code>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                <span className="bg-blue-600 w-8 h-8 rounded-full flex items-center justify-center">4</span>
-                Deploy to Workers
-              </h3>
-              <div className="bg-slate-900 p-4 rounded-lg overflow-x-auto">
-                <code className="text-sm text-slate-300">
-                  $ hackpack deploy
-                  <br />
-                  <span className="text-green-400">→ Live at https://my-hack.yourname.workers.dev</span>
-                </code>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Bases & Features */}
-      <section className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-16 text-center">Complete Stack</h2>
-
-          <div className="grid md:grid-cols-2 gap-12 mb-12">
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-blue-400">7 Frameworks</h3>
-              <ul className="space-y-3 text-slate-300">
-                <li className="flex items-center gap-2">
-                  <span className="text-blue-400">▸</span> ts-nextjs
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-blue-400">▸</span> ts-vite-react
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-blue-400">▸</span> ts-sveltekit
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-blue-400">▸</span> ts-hono-api (REST API)
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-blue-400">▸</span> py-fastapi
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-blue-400">▸</span> shadcn-svelte
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-blue-400">▸</span> shadcn-vue
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-purple-400">16 Features</h3>
-              <div className="space-y-4">
-                <div>
-                  <p className="font-semibold text-slate-300 mb-2">UI Kits</p>
-                  <p className="text-sm text-slate-400">shadcn/ui • Aceternity • shadcn-svelte • shadcn-vue</p>
-                </div>
-                <div>
-                  <p className="font-semibold text-slate-300 mb-2">AI & LLMs</p>
-                  <p className="text-sm text-slate-400">Mastra • LangChain (JS/Python) • Pydantic AI • Vercel SDK</p>
-                </div>
-                <div>
-                  <p className="font-semibold text-slate-300 mb-2">Auth & DB</p>
-                  <p className="text-sm text-slate-400">Better Auth • JWT • D1+Drizzle • D1+SQLModel</p>
-                </div>
-                <div>
-                  <p className="font-semibold text-slate-300 mb-2">Testing & CI</p>
-                  <p className="text-sm text-slate-400">Vitest • pytest • GitHub Actions</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Examples */}
-      <section id="examples" className="py-20 px-4 bg-blue-600/5 border-y border-blue-400/20">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-center">Example Projects</h2>
-
-          <div className="space-y-6">
-            <ExampleCard
-              title="Full-Stack SaaS Starter"
-              description="Complete SaaS with login, database, AI features, testing, and CI/CD"
-              command={`npx hackpack new saas-app \\
-  --base=ts-nextjs \\
-  --features=ui-shadcn,auth-better-auth,db-d1-drizzle,ai-mastra \\
-  --pages=landing,login,signup,dashboard`}
-            />
-
-            <ExampleCard
-              title="Python FastAPI Backend"
-              description="Backend API with SQLModel, JWT auth, and pytest"
-              command={`npx hackpack new api-service \\
-  --base=py-fastapi \\
-  --features=db-d1-sqlmodel,auth-py-jwt,testing-pytest`}
-            />
-
-            <ExampleCard
-              title="Minimal Hono API"
-              description="Lightweight REST API with D1 database"
-              command={`npx hackpack new api \\
-  --base=ts-hono-api \\
-  --features=db-d1-drizzle`}
-            />
-          </div>
-        </div>
-      </section>
 
       {/* Social Proof */}
       <section className="py-16 px-4 bg-blue-600/5 border-y border-blue-400/20">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-sm text-slate-400 mb-8">Trusted by hackers and builders</p>
-          <div className="flex flex-wrap justify-center gap-8 items-center text-slate-300">
-            <div className="flex items-center gap-2">
-              <Sparkles size={18} className="text-yellow-400" />
-              <span className="font-semibold">7 Frameworks</span>
-            </div>
+          <p className="text-sm text-slate-400 mb-8">Built for hackathons • Open source • MIT license</p>
+          <div className="flex flex-wrap justify-center gap-6 items-center text-slate-300">
+            <a href="https://github.com/manish-9245/hackpack" className="flex items-center gap-2 hover:text-blue-400 transition-colors">
+              <Github size={18} />
+              <span className="font-semibold">Star on GitHub</span>
+            </a>
             <div className="flex items-center gap-2">
               <Code2 size={18} className="text-blue-400" />
-              <span className="font-semibold">TypeScript + Python</span>
+              <span className="font-semibold">Deterministic builds</span>
             </div>
             <div className="flex items-center gap-2">
               <Rocket size={18} className="text-green-400" />
-              <span className="font-semibold">Deploy to Workers</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Shield size={18} className="text-purple-400" />
-              <span className="font-semibold">Type-Safe by Default</span>
+              <span className="font-semibold">Global CDN deployment</span>
             </div>
           </div>
         </div>
@@ -303,21 +153,21 @@ export default function Home() {
       {/* Final CTA */}
       <section className="py-24 px-4 text-center">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-5xl font-black mb-6">Ready to build?</h2>
+          <h2 className="text-5xl font-black mb-4">Ship faster in 90 seconds</h2>
           <p className="text-xl text-slate-300 mb-12">
-            Full-stack project from zero to deployed in 90 seconds.
+            Stop building boilerplate. Start shipping features.
           </p>
           <div className="flex gap-4 justify-center flex-wrap mb-12">
-            <a href="https://github.com/manish-9245/hackpack#quick-start" className="px-8 py-4 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 rounded-lg font-bold flex items-center gap-2 transition-all hover:scale-105">
-              <Terminal size={20} /> Start Building
+            <a href="https://github.com/manish-9245/hackpack#quick-start" className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-lg font-bold flex items-center gap-2 transition-all hover:scale-105 shadow-lg">
+              <Terminal size={20} /> Deploy Now
               <ArrowRight size={18} />
             </a>
-            <a href="https://github.com/manish-9245/hackpack" className="px-8 py-4 border-2 border-blue-400 hover:bg-blue-400/10 rounded-lg font-semibold flex items-center gap-2">
-              <Github size={20} /> View Source
+            <a href="https://github.com/manish-9245/hackpack" className="px-8 py-4 border-2 border-slate-500 hover:border-blue-400 hover:text-blue-400 rounded-lg font-semibold flex items-center gap-2 transition-colors">
+              <Github size={20} /> View on GitHub
             </a>
           </div>
           <p className="text-sm text-slate-400">
-            Open source • MIT license • <a href="https://github.com/manish-9245/hackpack" className="text-blue-400 hover:underline">Star us on GitHub</a>
+            Open source • MIT licensed • <a href="https://github.com/manish-9245/hackpack" className="text-blue-400 hover:underline">Built for hackers</a>
           </p>
         </div>
       </section>
@@ -337,22 +187,13 @@ export default function Home() {
   );
 }
 
-function StatCard({ icon, stat, label, color }: { icon: React.ReactNode; stat: string; label: string; color: string }) {
-  const colorMap = {
-    blue: 'text-blue-400',
-    purple: 'text-purple-400',
-    pink: 'text-pink-400',
-    orange: 'text-orange-400',
-    green: 'text-green-400',
-    indigo: 'text-indigo-400',
-  };
-
+function StatCard({ icon, stat, label, color }: { icon: React.ReactNode; stat: string; label: string; color: ColorVariant }) {
   return (
     <div className="glass p-6 rounded-lg hover:border-blue-400/50 transition-all text-center">
-      <div className={`${colorMap[color as keyof typeof colorMap]} mb-3 flex justify-center`}>
+      <div className={`${colorConfig[color].stat} mb-3 flex justify-center`}>
         {icon}
       </div>
-      <div className={`text-3xl font-black ${colorMap[color as keyof typeof colorMap]} mb-2`}>
+      <div className={`text-3xl font-black ${colorConfig[color].stat} mb-2`}>
         {stat}
       </div>
       <p className="text-slate-400 text-sm">{label}</p>
@@ -360,20 +201,13 @@ function StatCard({ icon, stat, label, color }: { icon: React.ReactNode; stat: s
   );
 }
 
-function BenefitCard({ number, title, description, icon, color }: { number: string; title: string; description: string; icon: React.ReactNode; color: string }) {
-  const colorMap = {
-    blue: 'border-blue-400/50 text-blue-400',
-    green: 'border-green-400/50 text-green-400',
-    purple: 'border-purple-400/50 text-purple-400',
-    pink: 'border-pink-400/50 text-pink-400',
-    orange: 'border-orange-400/50 text-orange-400',
-    indigo: 'border-indigo-400/50 text-indigo-400',
-  };
+function BenefitCard({ number, title, description, icon, color }: { number: string; title: string; description: string; icon: React.ReactNode; color: ColorVariant }) {
+  const [borderColor, textColor] = colorConfig[color].benefit.split(' ');
 
   return (
-    <div className={`glass p-6 rounded-lg border border-slate-400/20 hover:${colorMap[color as keyof typeof colorMap].split(' ')[0]} transition-all group`}>
+    <div className={`glass p-6 rounded-lg border border-slate-400/20 hover:${borderColor} transition-all group`}>
       <div className="flex items-start gap-4">
-        <div className={`${colorMap[color as keyof typeof colorMap].split(' ')[1]} flex-shrink-0 rounded-lg p-2 bg-slate-900/50`}>
+        <div className={`${textColor} flex-shrink-0 rounded-lg p-2 bg-slate-900/50`}>
           {icon}
         </div>
         <div>
@@ -385,18 +219,6 @@ function BenefitCard({ number, title, description, icon, color }: { number: stri
           <h3 className="text-lg font-bold mb-2 group-hover:text-white transition-colors">{title}</h3>
           <p className="text-slate-400 text-sm leading-relaxed">{description}</p>
         </div>
-      </div>
-    </div>
-  );
-}
-
-function ExampleCard({ title, description, command }: { title: string; description: string; command: string }) {
-  return (
-    <div className="glass p-6 rounded-lg">
-      <h3 className="text-lg font-semibold mb-2">{title}</h3>
-      <p className="text-slate-400 mb-4">{description}</p>
-      <div className="bg-slate-900 p-4 rounded text-sm overflow-x-auto">
-        <code className="text-slate-300">{command}</code>
       </div>
     </div>
   );
