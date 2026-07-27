@@ -1,16 +1,34 @@
-# hackpack 🚀
+<div align="center">
 
-![Build](https://img.shields.io/badge/build-passing-brightgreen)
-![npm](https://img.shields.io/npm/v/hackpack?color=blue)
-![License](https://img.shields.io/badge/license-MIT-green)
-![Status](https://img.shields.io/badge/status-active-success)
+```
+    ██╗  ██╗ █████╗  ██████╗██╗  ██╗██████╗  █████╗  ██████╗██╗  ██╗
+    ██║  ██║██╔══██╗██╔════╝██║ ██╔╝██╔══██╗██╔══██╗██╔════╝██║ ██╔╝
+    ███████║███████║██║     █████╔╝ ██████╔╝███████║██║     █████╔╝
+    ██╔══██║██╔══██║██║     ██╔═██╗ ██╔═══╝ ██╔══██║██║     ██╔═██╗
+    ██║  ██║██║  ██║╚██████╗██║  ██╗██║     ██║  ██║╚██████╗██║  ██╗
+    ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
+```
+
+**The fastest way to scaffold full-stack hackathon projects.**
+
+Pick a language/framework, select features (UI kit, auth, DB, AI), generate prebuilt pages wired end-to-end, and ship to Cloudflare Workers.
+
+[![CI](https://github.com/manish-9245/hackpack/actions/workflows/ci.yml/badge.svg)](https://github.com/manish-9245/hackpack/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/create-hackpack.svg?color=3b82f6)](https://www.npmjs.com/package/create-hackpack)
+[![npm downloads](https://img.shields.io/npm/dm/create-hackpack.svg?color=3b82f6)](https://www.npmjs.com/package/create-hackpack)
+[![license](https://img.shields.io/npm/l/create-hackpack.svg?color=10b981)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/manish-9245/hackpack?style=flat&color=f59e0b)](https://github.com/manish-9245/hackpack)
 ![TypeScript](https://img.shields.io/badge/TypeScript-ready-blue)
 ![Python](https://img.shields.io/badge/Python-ready-blue)
 
-**The fastest way to scaffold full-stack hackathon projects.** Pick a language/framework, select features (UI kit, auth, DB, AI), generate prebuilt pages with routes wired end-to-end, and ship to Cloudflare Workers. Built for speed, type-safety, and deterministic builds.
+[Quick Start](#quick-start) · [Features](#features) · [Commands](#commands-reference) · [Architecture](#architecture) · [Deployment](#deployment) · [Contributing](#contributing)
+
+</div>
+
+---
 
 ```bash
-hackpack new my-hack --base=ts-nextjs --features=ui-shadcn,auth-better-auth,db-d1-drizzle
+npx create-hackpack new my-hack --base=ts-nextjs --features=ui-shadcn,auth-better-auth,db-d1-drizzle
 cd my-hack && npm install && npm run dev
 ```
 
@@ -23,6 +41,28 @@ cd my-hack && npm install && npm run dev
 - ✅ **Custom CRUD generator** with natural language parsing
 - ✅ **Deploy to Cloudflare Workers** in one command
 - ✅ **Multi-language support** (TypeScript + Python)
+
+## Table of Contents
+
+<details>
+<summary>Expand</summary>
+
+- [How It Works](#how-it-works)
+- [Features](#features)
+- [Quick Start](#quick-start)
+- [Commands Reference](#commands-reference)
+- [Use Cases & Templates](#use-cases--templates)
+- [Registry System](#registry-system)
+- [Architecture](#architecture)
+- [Deployment](#deployment)
+- [CLI Distributions](#cli-distributions)
+- [Why hackpack?](#why-hackpack)
+- [Bases & Features Matrix](#bases--features-matrix)
+- [Contributing](#contributing)
+- [License](#license)
+- [Community & Resources](#community--resources)
+
+</details>
 
 ## How It Works
 
@@ -114,14 +154,6 @@ graph LR
 - Generates: frontend (list + detail views), backend (CRUD routes), DB schema, migrations
 - Deterministic (no LLM), local NLP parser for `--describe` flag
 - Auto-wires into dashboard nav, DB schema index, route handlers
-
-## Install
-
-```bash
-npm install -g create-hackpack
-# or
-npx create-hackpack@latest new my-project
-```
 
 ## Quick Start
 
@@ -579,7 +611,7 @@ npx create-hackpack@latest new my-hack
 - ✅ Remote git registries
 - ✅ NLP `--describe` (local)
 - ✅ All bases and features
-- 📦 Requires Node.js 18+
+- 📦 Requires Node.js 22.6+
 </details>
 
 <details>
@@ -714,14 +746,15 @@ MIT
 
 **📚 Documentation**
 - [Full Documentation](docs/) — Complete guide
-- [Features Reference](docs/features.md) — All available features
-- [Registry Development](docs/registry.md) — Build custom registries
-- [Architecture Deep Dive](docs/architecture.md) — How it works
+- [Quickstart](docs/QUICKSTART.md) — Get running in minutes
+- [Features Reference](docs/FEATURES.md) — All available features
+- [Architecture Deep Dive](docs/ARCHITECTURE.md) — Composition model, registry format, wiring
+- [Design System](docs/DESIGN_SYSTEM.md) — Semantic color palette used by generated projects
 
 **🔗 Links**
 - [GitHub](https://github.com/manish-9245/hackpack) — Source code & issues
-- [npm Package](https://www.npmjs.com/package/hackpack) — Install via npm
-- [Landing Page](./landing/) — Deploy showcase site to Vercel
+- [npm Package](https://www.npmjs.com/package/create-hackpack) — Install via npm
+- [Landing Page](./landing/) — Animated showcase site (Next.js + WebGL)
 
 **💬 Get Help**
 - [GitHub Issues](https://github.com/manish-9245/hackpack/issues) — Report bugs
