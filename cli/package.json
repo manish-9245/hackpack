@@ -1,6 +1,6 @@
 {
   "name": "hackpack",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Scaffold full-stack hackathon projects in seconds. Pick a framework, add features (UI, auth, DB, AI), generate CRUD pages, deploy to Cloudflare Workers.",
   "keywords": [
     "hackathon",
@@ -23,8 +23,15 @@
     "starter-template"
   ],
   "type": "module",
+  "license": "MIT",
+  "homepage": "https://hackpack.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/hackpack.git"
+  },
+  "author": "Manish Tiwari",
   "bin": {
-    "hackpack": "./bin/hackpack.ts"
+    "hackpack": "./bin/hackpack.js"
   },
   "scripts": {
     "selfcheck": "node --no-warnings test/self-check.ts"
@@ -36,7 +43,8 @@
     "execa": "^9.5.2",
     "giget": "^3.3.1",
     "handlebars": "^4.7.8",
-    "picocolors": "^1.1.1"
+    "picocolors": "^1.1.1",
+    "tsx": "^4.18.0"
   },
   "engines": {
     "node": ">=22.6.0"

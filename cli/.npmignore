@@ -1,0 +1,15 @@
+test/
+*.test.ts
+*.spec.ts
+.git
+.gitignore
+.env
+.env.example
+.env.local
+.env.*.local
+node_modules/
+dist/
+build/
+*.tsbuildinfo
+.DS_Store
+Thumbs.db
