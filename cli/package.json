@@ -1,39 +1,63 @@
 {
-  "name": "hackpack",
-  "version": "1.0.0",
-  "description": "Scaffold full-stack hackathon projects in seconds. Pick a framework, add features (UI, auth, DB, AI), generate CRUD pages, deploy to Cloudflare Workers.",
+  "name": "create-hackpack",
+  "version": "1.0.1",
+  "description": "CLI to scaffold full-stack hackathon projects in seconds. Pick a framework, add features (UI, auth, DB, AI), generate CRUD pages, deploy to Cloudflare Workers. Run with npx create-hackpack.",
   "keywords": [
     "hackathon",
     "scaffold",
+    "scaffolding",
+    "cli",
+    "npx",
+    "create",
+    "generator",
+    "project-generator",
     "full-stack",
     "nextjs",
+    "react",
+    "vite",
     "fastapi",
     "sveltekit",
+    "svelte",
+    "vue",
+    "nuxt",
     "hono",
     "cloudflare-workers",
     "d1",
+    "drizzle",
+    "shadcn",
+    "better-auth",
     "authentication",
     "crud-generator",
     "composable",
     "deterministic",
     "typescript",
     "python",
-    "project-generator",
     "boilerplate",
+    "starter-kit",
     "starter-template"
   ],
   "type": "module",
   "license": "MIT",
-  "homepage": "https://hackpack.dev",
+  "homepage": "https://github.com/manish-9245/hackpack#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/hackpack.git"
+    "url": "https://github.com/manish-9245/hackpack.git",
+    "directory": "cli"
   },
+  "bugs": "https://github.com/manish-9245/hackpack/issues",
   "author": "Manish Tiwari",
   "bin": {
     "hackpack": "./bin/hackpack.js"
   },
+  "files": [
+    "bin",
+    "src",
+    "templates",
+    "README.md"
+  ],
   "scripts": {
+    "prepack": "rm -rf templates && cp -R ../templates ./templates",
+    "postpack": "rm -rf templates",
     "selfcheck": "node --no-warnings test/self-check.ts"
   },
   "dependencies": {

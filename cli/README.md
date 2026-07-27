@@ -1,29 +1,94 @@
-# hackpack
+<div align="center">
 
-> Scaffold full-stack hackathon projects in seconds.
+```
+    ██╗  ██╗ █████╗  ██████╗██╗  ██╗██████╗  █████╗  ██████╗██╗  ██╗
+    ██║  ██║██╔══██╗██╔════╝██║ ██╔╝██╔══██╗██╔══██╗██╔════╝██║ ██╔╝
+    ███████║███████║██║     █████╔╝ ██████╔╝███████║██║     █████╔╝
+    ██╔══██║██╔══██║██║     ██╔═██╗ ██╔═══╝ ██╔══██║██║     ██╔═██╗
+    ██║  ██║██║  ██║╚██████╗██║  ██╗██║     ██║  ██║╚██████╗██║  ██╗
+    ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
+```
 
-Pick a framework, select features (UI, auth, DB, AI), generate CRUD pages, and deploy to Cloudflare Workers—all in one command.
+**Full-stack hackathon projects, scaffolded in 90 seconds.**
 
-## Features
+Pick a framework. Select features. Deploy. No boilerplate, no LLM guessing, no configuration paralysis.
 
-- **7 Bases**: Next.js, Vite + React, SvelteKit, Hono, FastAPI, shadcn-svelte, shadcn-vue
-- **16 Features**: UI libraries, AI/LLM integrations, authentication, databases, testing, CI/CD
-- **Prebuilt Pages**: Landing, login, signup, dashboard—wired to your chosen auth + DB
-- **One-Click Deploy**: Ship to Cloudflare Workers with `hackpack deploy`
-- **Fully Customizable**: Pick your package manager, license, add metadata, initialize git
+[![npm version](https://img.shields.io/npm/v/create-hackpack.svg?color=3b82f6)](https://www.npmjs.com/package/create-hackpack)
+[![npm downloads](https://img.shields.io/npm/dm/create-hackpack.svg?color=3b82f6)](https://www.npmjs.com/package/create-hackpack)
+[![license](https://img.shields.io/npm/l/create-hackpack.svg?color=10b981)](https://github.com/manish-9245/hackpack/blob/main/LICENSE)
+[![node](https://img.shields.io/node/v/create-hackpack.svg)](https://www.npmjs.com/package/create-hackpack)
+[![GitHub stars](https://img.shields.io/github/stars/manish-9245/hackpack?style=flat&color=f59e0b)](https://github.com/manish-9245/hackpack)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-ec4899.svg)](https://github.com/manish-9245/hackpack/blob/main/docs/CONTRIBUTING.md)
+
+[Quick Start](#quick-start) · [Bases](#available-bases) · [Features](#available-features) · [Commands](#other-commands) · [Deploy](#deployment) · [Contributing](#contributing)
+
+</div>
+
+---
+
+```bash
+npx create-hackpack new my-app
+```
+
+That's it — a wired, typed, deployable full-stack app in the time it takes to read this line.
+
+## Table of contents
+
+<details>
+<summary>Expand</summary>
+
+- [Why hackpack](#why-hackpack)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Non-Interactive Mode](#non-interactive-mode)
+- [Available Bases](#available-bases)
+- [Available Features](#available-features)
+- [Prebuilt Pages](#prebuilt-pages)
+- [Other Commands](#other-commands)
+- [Generated Project Structure](#generated-project-structure)
+- [Design System](#design-system)
+- [Deployment](#deployment)
+- [How it compares](#how-it-compares)
+- [Roadmap](#roadmap-v2)
+- [Contributing](#contributing)
+- [License](#license)
+
+</details>
+
+## Why hackpack
+
+- **Speed** — full-stack project in 90 seconds, zero onboarding tax.
+- **Composability** — pick any base + feature combo; bases and features don't conflict.
+- **Determinism** — same input, same output, every time. No LLM randomness, perfect for reproducible builds.
+- **Type-safety** — Zod, Drizzle, TypeScript by default. Bugs caught at compile time.
+- **Portable** — exports to plain git. No vendor lock-in, deploy to Workers, Docker, or anywhere.
+
+| | |
+|---|---|
+| **7 Bases** | Next.js, Vite + React, SvelteKit, Hono, FastAPI, shadcn-svelte, shadcn-vue |
+| **16 Features** | UI libraries, AI/LLM integrations, authentication, databases, testing, CI/CD |
+| **Prebuilt Pages** | Landing, login, signup, dashboard — wired to your chosen auth + DB |
+| **One-Click Deploy** | Ship to Cloudflare Workers with `hackpack deploy` |
+| **Fully Customizable** | Pick your package manager, license, add metadata, initialize git |
 
 ## Installation
 
+Run it directly, no install needed:
+
 ```bash
-npm install -g hackpack
+npx create-hackpack new my-app
 ```
 
-Or with other package managers:
+Or install the `hackpack` command globally:
+
 ```bash
-pnpm add -g hackpack
-yarn global add hackpack
-bun add -g hackpack
+npm install -g create-hackpack
+pnpm add -g create-hackpack
+yarn global add create-hackpack
+bun add -g create-hackpack
 ```
+
+> Published on npm as **`create-hackpack`**; the command it installs is **`hackpack`**.
 
 ## Quick Start
 
@@ -32,6 +97,7 @@ hackpack new my-app
 ```
 
 This launches an interactive wizard to choose:
+
 - **Base template** (framework)
 - **Features** (UI, auth, DB, AI, testing, CI/CD)
 - **Pages** (landing, login, signup, dashboard)
@@ -71,42 +137,52 @@ hackpack new my-app \
 
 ## Available Features
 
-### UI & Styling
+<table>
+<tr><td valign="top">
+
+**UI & Styling**
 - `ui-shadcn` — shadcn/ui (Radix + Tailwind)
 - `ui-aceternity` — Aceternity UI effects (vendored, offline)
 - `ui-shadcn-svelte` — shadcn-svelte variant
 - `ui-shadcn-vue` — shadcn-vue variant
 
-### AI & LLMs
+**AI & LLMs**
 - `ai-mastra` — Mastra agent framework
 - `ai-langchain-js` — LangChain.js (agentic chains)
 - `ai-langchain-py` — LangChain (Python)
 - `ai-pydantic-ai` — Pydantic AI (structured output)
 - `ai-vercel-sdk` — Vercel AI SDK (lightweight chat)
 
-### Authentication
+</td><td valign="top">
+
+**Authentication**
 - `auth-better-auth` — Better Auth (email/password + OAuth)
 - `auth-py-jwt` — JWT-based auth (Python)
 
-### Databases
+**Databases**
 - `db-d1-drizzle` — Cloudflare D1 + Drizzle ORM (TypeScript)
 - `db-d1-sqlmodel` — Cloudflare D1 + SQLModel (Python)
 
-### Testing
+**Testing**
 - `testing-vitest` — Vitest + Testing Library (TypeScript)
 - `testing-pytest` — pytest (Python)
 
-### CI/CD
+**CI/CD**
 - `ci-github-actions` — GitHub Actions (build, test, deploy to Cloudflare Workers)
+
+</td></tr>
+</table>
 
 ## Prebuilt Pages
 
 Each page is wired to your chosen auth feature and DB schema:
 
-- `landing` — Hero section with CTA
-- `login` — Auth form (auto-variants based on selected auth feature)
-- `signup` — Registration form
-- `dashboard` — Route-guarded dashboard with nav
+| Page | Description |
+|------|-------------|
+| `landing` | Hero section with CTA |
+| `login` | Auth form (auto-variants based on selected auth feature) |
+| `signup` | Registration form |
+| `dashboard` | Route-guarded dashboard with nav |
 
 ## Other Commands
 
@@ -135,8 +211,8 @@ my-app/
 ├── LICENSE                # MIT or Apache 2.0 (if selected)
 ├── .editorconfig          # Editor settings (2-space indent, LF, UTF-8)
 ├── .env.example           # Environment variables baseline
-├── hackpack.json          # Metadata (base, features, pages, author, license)
-├── hackpack.lock          # Registry resolution snapshot
+├── hackpack.json           # Metadata (base, features, pages, author, license)
+├── hackpack.lock           # Registry resolution snapshot
 ├── package.json / pyproject.toml
 ├── app/ or src/           # Framework-specific structure
 └── ...                    # Feature-specific files (auth, DB, etc.)
@@ -156,6 +232,7 @@ surface: base, elevated, muted (dark theme)
 ```
 
 Available as Tailwind utilities:
+
 ```jsx
 <div className="bg-surface-base text-primary">...</div>
 <button className="bg-primary hover:bg-primary-dark">...</button>
@@ -170,7 +247,17 @@ cd my-app
 hackpack deploy
 ```
 
-Requires `CLOUDFLARE_API_TOKEN` environment variable. See [Cloudflare docs](https://developers.cloudflare.com/fundamentals/setup/find-account-and-zone-ids/).
+Requires a `CLOUDFLARE_API_TOKEN` environment variable. See the [Cloudflare docs](https://developers.cloudflare.com/fundamentals/setup/find-account-and-zone-ids/).
+
+## How it compares
+
+| | hackpack | Framework CLI (`create-next-app`, etc.) | LLM code generators |
+|---|---|---|---|
+| Cross-framework feature composition | ✅ | ❌ single framework | ⚠️ inconsistent |
+| Reproducible output (same input → same output) | ✅ | ✅ | ❌ |
+| Auth + DB + pages wired together | ✅ | ❌ manual | ⚠️ varies |
+| No cloud vendor required | ✅ local-first | ✅ | ✅ |
+| Auditable, no black box | ✅ | ✅ | ❌ |
 
 ## Roadmap (v2+)
 
@@ -180,10 +267,18 @@ Requires `CLOUDFLARE_API_TOKEN` environment variable. See [Cloudflare docs](http
 - Extra page presets
 - More Aceternity components
 
-## License
-
-MIT
-
 ## Contributing
 
-Issues and PRs welcome. See [GitHub](https://github.com/yourusername/hackpack).
+Issues and PRs welcome. See [CONTRIBUTING.md](https://github.com/manish-9245/hackpack/blob/main/docs/CONTRIBUTING.md) and the [GitHub repo](https://github.com/manish-9245/hackpack).
+
+## License
+
+[MIT](https://github.com/manish-9245/hackpack/blob/main/LICENSE) © [Manish Tiwari](https://github.com/manish-9245)
+
+---
+
+<div align="center">
+
+[![Star History Chart](https://api.star-history.com/svg?repos=manish-9245/hackpack&type=Date)](https://star-history.com/#manish-9245/hackpack)
+
+</div>

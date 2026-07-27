@@ -148,8 +148,7 @@ export function showHelp() {
     hackpack update-vendor <feature>    Refresh vendored components
 
   🌐 Docs & Links:
-    • Full docs: https://hackpack.dev
-    • GitHub: https://github.com/yourusername/hackpack
-    • Issues: https://github.com/yourusername/hackpack/issues
+    • GitHub: https://github.com/manish-9245/hackpack
+    • Issues: https://github.com/manish-9245/hackpack/issues
   `);
 }

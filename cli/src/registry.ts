@@ -7,7 +7,10 @@ import type { TemplateManifest } from "./types.ts";
 import { readConfig, CACHE_DIR } from "./config.ts";
 
 const CLI_DIR = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
-const DEFAULT_REGISTRY = path.join(CLI_DIR, "..", "templates");
+// Published package ships templates/ next to src/ (see prepack script). In the
+// monorepo checkout it instead lives one level up, alongside cli/.
+const BUNDLED_REGISTRY = path.join(CLI_DIR, "templates");
+const MONOREPO_REGISTRY = path.join(CLI_DIR, "..", "templates");
 
 /** Resolves a registry to a local directory: the bundled default, a local path, a
  * name saved via `hackpack registry add`, or a remote git source (anything giget
@@ -15,7 +18,9 @@ const DEFAULT_REGISTRY = path.join(CLI_DIR, "..", "templates");
  * Remote sources are cached under ~/.hackpack/cache so repeat `new`/`add` calls
  * don't re-fetch every time; pass a fresh source (e.g. append #branch) to bust it. */
 export async function resolveRegistry(registryArg?: string): Promise<string> {
-  if (!registryArg) return DEFAULT_REGISTRY;
+  if (!registryArg) {
+    return (await pathIsDirectory(BUNDLED_REGISTRY)) ? BUNDLED_REGISTRY : MONOREPO_REGISTRY;
+  }
 
   const config = await readConfig();
   const source = config.registries[registryArg] ?? registryArg;

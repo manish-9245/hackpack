@@ -118,9 +118,9 @@ graph LR
 ## Install
 
 ```bash
-npm install -g hackpack
+npm install -g create-hackpack
 # or
-npx hackpack@latest new my-project
+npx create-hackpack@latest new my-project
 ```
 
 ## Quick Start
@@ -131,9 +131,9 @@ npx hackpack@latest new my-project
 <summary><b>npm (Recommended)</b></summary>
 
 ```bash
-npm install -g hackpack
+npm install -g create-hackpack
 # or use npx
-npx hackpack@latest new my-hack
+npx create-hackpack@latest new my-hack
 ```
 </details>
 
@@ -571,9 +571,9 @@ docker run -p 3000:3000 my-hack
 
 Full-featured, all platforms:
 ```bash
-npm install -g hackpack
+npm install -g create-hackpack
 # or
-npx hackpack@latest new my-hack
+npx create-hackpack@latest new my-hack
 ```
 - ✅ Interactive wizard
 - ✅ Remote git registries

@@ -1,15 +1,8 @@
 #!/usr/bin/env node
-import { execa } from 'execa';
-import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
+import { register } from 'tsx/esm/api';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const hackpackPath = join(__dirname, 'hackpack.ts');
-
-try {
-  await execa('node', ['--import', 'tsx', hackpackPath, ...process.argv.slice(2)], {
-    stdio: 'inherit',
-  });
-} catch (error) {
-  process.exit(error.exitCode || 1);
-}
+// Registered in-process (not via `node --import tsx`) so module resolution for
+// tsx and its transpiled imports stays anchored to this package's own
+// node_modules, regardless of the caller's current working directory.
+register();
+await import('./hackpack.ts');
