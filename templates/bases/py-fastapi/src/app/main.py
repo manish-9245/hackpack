@@ -7,7 +7,10 @@ app = FastAPI()
 
 @app.get("/")
 async def root():
-    return {"message": "Welcome to your hackpack project"}
+    return {
+        "message": "Welcome to your hackpack project",
+        "docs": "https://hackpack.dev/docs",
+    }
 
 
 # hackpack:routers

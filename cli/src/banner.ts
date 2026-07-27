@@ -1,25 +1,47 @@
-import * as clack from "@clack/prompts";
+import pc from "picocolors";
+
+// Packy: antenna + LED eyes (cyan/green, "techy"), rounded ears (blue, "cute"),
+// backpack with glowing chip + straps (magenta/yellow). All box-drawing/shading
+// chars are single-width in every monospace terminal font (no emoji — emoji
+// render double-width in many terminals and break this alignment).
+const PACKY = [
+  pc.cyan("      .        "),
+  pc.cyan("     (o)       "),
+  pc.cyan("      |        "),
+  pc.blue("   ^       ^   "),
+  pc.blue("  / '.___.' \\  "),
+  pc.blue(" |  ") + pc.green("o") + pc.blue("     ") + pc.green("o") + pc.blue("  | "),
+  pc.blue(" |     v     | "),
+  pc.blue("  \\_________/  "),
+  pc.magenta("   .-------.   "),
+  pc.magenta("  /  ") + pc.yellow("o---o") + pc.magenta("  \\  "),
+  pc.magenta(" |  |") + pc.yellow("▓▓▓▓▓") + pc.magenta("|  | "),
+  pc.magenta("  \\  ") + pc.yellow("o---o") + pc.magenta("  /  "),
+  pc.magenta("   '-------'   "),
+].join("\n");
 
 export function showWelcome() {
-  console.log(`
+  console.log(PACKY);
+  console.log(
+    pc.blue(`
     ██╗  ██╗ █████╗  ██████╗██╗  ██╗██████╗  █████╗  ██████╗██╗  ██╗
     ██║  ██║██╔══██╗██╔════╝██║ ██╔╝██╔══██╗██╔══██╗██╔════╝██║ ██╔╝
     ███████║███████║██║     █████╔╝ ██████╔╝███████║██║     █████╔╝
     ██╔══██║██╔══██║██║     ██╔═██╗ ██╔═══╝ ██╔══██║██║     ██╔═██╗
     ██║  ██║██║  ██║╚██████╗██║  ██╗██║     ██║  ██║╚██████╗██║  ██╗
     ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
-
-    Scaffold full-stack hackathon projects in seconds.
-    Pick a framework, select features, ship to Cloudflare Workers.
-
-    🚀 7 bases  •  16 features  •  prebuilt pages  •  end-to-end wired
-  `);
+`),
+  );
+  console.log(
+    `    ${pc.dim("Packy says:")} Scaffold full-stack hackathon projects in seconds.\n` +
+      `    Pick a framework, select features, ship to Cloudflare Workers.\n`,
+  );
+  console.log(pc.green(`    🚀 7 bases  •  16 features  •  prebuilt pages  •  end-to-end wired\n`));
 }
 
 export function showBases() {
+  console.log(pc.bold(pc.blue("\n  📚 Available Bases:\n")));
   console.log(`
-  📚 Available Bases:
-
     TypeScript:
       • ts-nextjs      — Next.js App Router (file-based routing)
       • ts-vite-react  — Vite + React (fast, minimal config)
@@ -36,9 +58,8 @@ export function showBases() {
 }
 
 export function showFeatures() {
+  console.log(pc.bold(pc.blue("\n  ✨ Available Features:\n")));
   console.log(`
-  ✨ Available Features:
-
     UI & Styling:
       • ui-shadcn      — shadcn/ui components (Radix + Tailwind)
       • ui-aceternity  — Aceternity UI effects (vendored, offline)
@@ -70,9 +91,8 @@ export function showFeatures() {
 }
 
 export function showPages() {
+  console.log(pc.bold(pc.blue("\n  📄 Prebuilt Pages:\n")));
   console.log(`
-  📄 Prebuilt Pages:
-
     • landing  — Hero section with CTA
     • login    — Auth form (variant: auth-better-auth or UI-only stub)
     • signup   — Registration form (same variants)
@@ -84,9 +104,8 @@ export function showPages() {
 }
 
 export function showExamples() {
+  console.log(pc.bold(pc.blue("\n  💡 Quick Examples:\n")));
   console.log(`
-  💡 Quick Examples:
-
     # Full-stack SaaS starter
     hackpack new saas-app \\
       --base=ts-nextjs \\
@@ -114,9 +133,8 @@ export function showExamples() {
 }
 
 export function showHelp() {
+  console.log(pc.bold(pc.blue("\n  📖 Full Help:\n")));
   console.log(`
-  📖 Full Help:
-
     hackpack new <name>                 Create new project
     hackpack add <feature>              Add feature to project
     hackpack page add <name>            Generate CRUD page

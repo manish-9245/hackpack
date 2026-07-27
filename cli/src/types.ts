@@ -41,6 +41,10 @@ export interface HackpackManifest {
   features: string[];
   pages: InstalledPage[];
   createdAt: string;
+  author?: string;
+  description?: string;
+  license?: "mit" | "apache-2.0" | "none";
+  packageManager?: "npm" | "pnpm" | "yarn" | "bun";
 }
 
 export interface HackpackLock {

@@ -19,6 +19,10 @@ export interface ComposeOptions {
   base: string;
   features: string[];
   pages: string[];
+  author?: string;
+  description?: string;
+  license?: "mit" | "apache-2.0" | "none";
+  packageManager?: "npm" | "pnpm" | "yarn" | "bun";
 }
 
 export interface ComposeResult {
@@ -83,8 +87,35 @@ export async function applyFeature(
 
 export async function compose(opts: ComposeOptions): Promise<ComposeResult> {
   const { registryPath, targetDir, projectName, base, features, pages } = opts;
-  const vars = { projectName };
+  const author = opts.author ?? "";
+  const description = opts.description ?? "";
+  const license = opts.license ?? "mit";
+  const packageManager = opts.packageManager ?? "npm";
+  const vars = {
+    projectName,
+    author,
+    description,
+    year: String(new Date().getFullYear()),
+    pm: packageManager,
+  };
   const postInstall: string[] = [];
+
+  // Universal hygiene layer (README, .editorconfig, .env.example baseline) —
+  // copied before the base so a base can still override a file by shipping
+  // its own same-named file (none currently do).
+  const commonDir = path.join(registryPath, "_common");
+  if (await pathExists(commonDir)) {
+    await copyTemplateDir(commonDir, targetDir, vars);
+  }
+  if (license !== "none") {
+    const licenseFile = license === "apache-2.0" ? "LICENSE-APACHE-2.0.hbs" : "LICENSE-MIT.hbs";
+    const licenseSrc = path.join(commonDir, licenseFile);
+    if (await pathExists(licenseSrc)) {
+      const raw = await fs.readFile(licenseSrc, "utf-8");
+      const Handlebars = (await import("handlebars")).default;
+      await fs.writeFile(path.join(targetDir, "LICENSE"), Handlebars.compile(raw)(vars));
+    }
+  }
 
   const baseManifest = await loadManifest(registryPath, "base", base);
   await copyTemplateDir(templateDir(registryPath, "base", base), targetDir, vars);
@@ -125,6 +156,10 @@ export async function compose(opts: ComposeOptions): Promise<ComposeResult> {
     features,
     pages: installedPages,
     createdAt: new Date().toISOString(),
+    author: author || undefined,
+    description: description || undefined,
+    license,
+    packageManager,
   };
   await fs.writeFile(path.join(targetDir, "hackpack.json"), JSON.stringify(hackpackJson, null, 2) + "\n");
 

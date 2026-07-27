@@ -119,3 +119,17 @@ export async function appendEnvVars(
   const sep = existing && !existing.endsWith("\n") ? "\n" : "";
   await fs.writeFile(filePath, existing + sep + lines.join("\n") + "\n");
 }
+
+const PM_INSTALL: Record<string, [string, string[]]> = {
+  npm: ["npm", ["install"]],
+  pnpm: ["pnpm", ["install"]],
+  yarn: ["yarn", []],
+  bun: ["bun", ["install"]],
+};
+
+/** Maps a package manager name to its install command + args. Falls back to npm
+ * for anything unrecognized rather than throwing — scaffolding shouldn't hard-fail
+ * over a typo'd --pm value. */
+export function installCommandFor(packageManager: string | undefined): [string, string[]] {
+  return PM_INSTALL[packageManager ?? "npm"] ?? PM_INSTALL.npm;
+}

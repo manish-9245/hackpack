@@ -5,6 +5,7 @@ const app = new Hono();
 app.get('/', (c) => {
   return c.json({
     message: 'Welcome to your hackpack API',
+    docs: 'https://hackpack.dev/docs',
     routes: {
       get: '/ (this)',
       post: '/example (demo)',

@@ -11,7 +11,32 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// Same glyph-for-glyph mascot as the TS CLI's banner.ts (uncolored — Go CLI
+// takes on no color dependency). Raw string literal: backslashes below are
+// literal, not escapes.
+const banner = `
+      .
+     (o)
+      |
+   ^       ^
+  / '.___.' \
+ |  o     o  |
+ |     v     |
+  \_________/
+   .-------.
+  /  o---o  \
+ |  |▓▓▓▓▓|  |
+  \  o---o  /
+   '-------'
+
+    HACKPACK — Scaffold full-stack hackathon projects in seconds.
+`
+
 func main() {
+	if len(os.Args) <= 1 || os.Args[1] == "--help" || os.Args[1] == "-h" {
+		fmt.Println(banner)
+	}
+
 	root := &cobra.Command{
 		Use:   "hackpack",
 		Short: "Scaffold hackathon projects from a template registry",
